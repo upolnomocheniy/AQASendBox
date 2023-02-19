@@ -29,7 +29,7 @@ pipeline {
 
             post {
                 success {
-                     zip dir: 'build', glob: '**/**', zipFile: artifactFile
+                     zip dir: "build", glob: '**/**', zipFile: artifactFile
                      archiveArtifacts artifacts: artifactFile
                      cucumber(fileIncludePattern: 'cucumber-report.json', jsonReportDirectory: 'build')
                 }
