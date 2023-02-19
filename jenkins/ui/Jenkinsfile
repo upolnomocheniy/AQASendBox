@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Start Test Execution') {
             steps {
-                bat "./gradlew cucumber -Dtags='${params.Tags}'"
+                bat './gradlew cucumber -Dtags="${params.Tags}"'
             }
         }
     }
