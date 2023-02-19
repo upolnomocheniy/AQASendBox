@@ -6,11 +6,6 @@ pipeline {
        string(name: 'Tags', defaultValue:'@ui', description: 'Tags to run test for')
     }
     stages {
-        stage('Clean Up') {
-            steps {
-                cleanWs()
-            }
-        }
         stage('Build') {
             steps {
                  bat './gradlew build'
