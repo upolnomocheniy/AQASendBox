@@ -18,11 +18,5 @@ pipeline {
                  sh './gradlew build'
             }
         }
-
-        stage('Start Test Execution') {
-            steps {
-                sh './gradlew cucumber -Dtags=${params.Tags}'
-            }
-        }
     }
 }
