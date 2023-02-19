@@ -1,10 +1,27 @@
 pipeline {
     agent any
 
+    parameters {
+       string('Branch', defaultValue: 'master', description: 'Git branch to run tests')
+       string('Tags', defaultValue:'@ui', description: 'Tags to run test for')
+    }
+
     stages {
-        stage('Hello') {
+        stage('Clean Up') {
             steps {
-                echo 'Hello World'
+                cleanWs()
+            }
+        }
+
+        stage('Build') {
+            steps {
+                 sh './gradlew build'
+            }
+        }
+
+        stage('Start Test Execution') {
+            steps {
+                sh './gradlew cucumber -Dtags=${params.Tags}'
             }
         }
     }
