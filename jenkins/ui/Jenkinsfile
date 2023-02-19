@@ -7,15 +7,9 @@ pipeline {
     }
 
     stages {
-        stage('Clean Up') {
-            steps {
-                cleanWs()
-            }
-        }
-
         stage('Build') {
             steps {
-                 sh './gradlew build'
+                 sh './gradlew clean build'
             }
         }
     }
