@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    environment {
-        GRADLE_HOME = tool 'Gradle'
-        GRADLE_OPTS = '-Dorg.gradle.daemon=false -Dorg.gradle.parallel=false'
-    }
 
     parameters {
        string(name: 'Branch', defaultValue: 'master', description: 'Git branch to run tests')
