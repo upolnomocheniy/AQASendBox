@@ -13,12 +13,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                 sh './gradlew build'
+                 bat './gradlew build'
             }
         }
         stage('Start Test Execution') {
             steps {
-                sh './gradlew cucumber -Dtags=${params.Tags}'
+                bat './gradlew cucumber -Dtags=${params.Tags}'
             }
         }
     }
