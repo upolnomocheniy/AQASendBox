@@ -1,4 +1,5 @@
 gitUrl = 'https://github.com/upolnomocheniy/AQASendBox.git'
+artifactFile = 'cucumber-report.zip'
 
 pipeline {
     agent any
