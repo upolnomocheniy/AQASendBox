@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     parameters {
-       string('Branch', defaultValue: 'master', description: 'Git branch to run tests')
-       string('Tags', defaultValue:'@ui', description: 'Tags to run test for')
+       string(name: 'Branch', defaultValue: 'master', description: 'Git branch to run tests')
+       string(name: 'Tags', defaultValue:'@ui', description: 'Tags to run test for')
     }
 
     stages {
