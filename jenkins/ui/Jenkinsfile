@@ -1,10 +1,28 @@
 pipeline {
     agent any
+    environment {
+        GRADLE_HOME = tool 'Gradle'
+        GRADLE_OPTS = '-Dorg.gradle.daemon=false -Dorg.gradle.parallel=false'
+    }
 
+    parameters {
+       string(name: 'Branch', defaultValue: 'master', description: 'Git branch to run tests')
+       string(name: 'Tags', defaultValue:'@ui', description: 'Tags to run test for')
+    }
     stages {
-         stage('Build') {
-           steps {
-                 bat './gradlew build'
+        stage('Clean Up') {
+            steps {
+                cleanWs()
+            }
+        }
+        stage('Build') {
+            steps {
+                 sh './gradlew build'
+            }
+        }
+        stage('Start Test Execution') {
+            steps {
+                sh './gradlew cucumber -Dtags=${params.Tags}'
             }
         }
     }
