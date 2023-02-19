@@ -1,15 +1,10 @@
 pipeline {
     agent any
 
-    parameters {
-       string(name: 'Branch', defaultValue: 'master', description: 'Git branch to run tests')
-       string(name: 'Tags', defaultValue:'@ui', description: 'Tags to run test for')
-    }
-
     stages {
-        stage('Build') {
-            steps {
-                 sh './gradlew clean build'
+         stage('Build') {
+           steps {
+                 sh './gradlew build'
             }
         }
     }
