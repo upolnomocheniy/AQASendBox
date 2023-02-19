@@ -6,6 +6,7 @@ pipeline {
        string(name: 'Tags', defaultValue:'@ui', description: 'Tags to run test for')
     }
     stages {
+
         stage('Build') {
             steps {
                  bat './gradlew build'
@@ -13,7 +14,7 @@ pipeline {
         }
         stage('Start Test Execution') {
             steps {
-                bat './gradlew cucumber -Dtags="@ui"'
+                bat "./gradlew cucumber -Dtags='${params.Tags}'"
             }
         }
     }
