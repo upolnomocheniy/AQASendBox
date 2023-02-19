@@ -1,20 +1,39 @@
+gitUrl = 'https://github.com/upolnomocheniy/AQASendBox.git'
+
 pipeline {
     agent any
 
     parameters {
        string(name: 'Branch', defaultValue: 'master', description: 'Git branch to run tests')
-       string(name: 'Tags', defaultValue:'@ui', description: 'Tags to run test for')
+       string(name: 'Tags', defaultValue: '@ui', description: 'Tags to run test for')
     }
     stages {
 
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                 bat './gradlew build'
+                git url: gitUrl, branch: "${params.Branch}"
             }
         }
+
+        stage('Build') {
+            steps {
+                 bat './gradlew clean build'
+            }
+        }
+
         stage('Start Test Execution') {
             steps {
                 bat "./gradlew cucumber -Dtags=${params.Tags}"
+            }
+        }
+
+        stage('Publish Tests Results') {
+            post {
+                success {
+                     zip dir: 'build', glob: '**/**', zipFile: artifactFile
+                     archiveArtifacts artifacts: artifactFile
+                     cucumber(fileIncludePattern: 'cucumber-report.json', jsonReportDirectory: 'build')
+                }
             }
         }
     }
