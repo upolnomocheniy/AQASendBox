@@ -26,13 +26,13 @@ pipeline {
             steps {
                 bat "./gradlew cucumber -Dtags=${params.Tags}"
             }
-        }
 
-        post {
-            success {
-                 zip dir: 'build', glob: '**/**', zipFile: artifactFile
-                 archiveArtifacts artifacts: artifactFile
-                 cucumber(fileIncludePattern: 'cucumber-report.json', jsonReportDirectory: 'build')
+            post {
+                success {
+                     zip dir: 'build', glob: '**/**', zipFile: artifactFile
+                     archiveArtifacts artifacts: artifactFile
+                     cucumber(fileIncludePattern: 'cucumber-report.json', jsonReportDirectory: 'build')
+                }
             }
         }
     }
