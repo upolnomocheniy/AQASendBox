@@ -43,6 +43,8 @@ pipeline {
 
             post {
                always {
+                  zip dir: 'build', glob: '**/**', zipFile: artifactFile
+                  archiveArtifacts artifacts: artifactFile
                   cucumber(fileIncludePattern: 'cucumber-report.json', jsonReportDirectory: 'build')
                }
             }
