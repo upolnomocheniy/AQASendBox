@@ -11,7 +11,7 @@ Feature: Test Home PAhe The Gordon's Site
     Then User can see header with втрати російських окупантів text for statistic per day
 
 
-  @ppe @prod
+  @ppe @prod @smoke
   Scenario: GRDNS-02 User check content for menu and submenu on homepage
     Given User opens home page
     Then User check sub menu on the home page:
