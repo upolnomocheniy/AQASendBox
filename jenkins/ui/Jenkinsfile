@@ -2,12 +2,12 @@ gitUrl = 'https://github.com/upolnomocheniy/AQASendBox.git'
 artifactFile = 'cucumber-report.zip'
 
 pipeline {
+    agent any
+
     options {
-        ansiColor('xterm')
         timestamps()
     }
 
-    agent any
 
     parameters {
        string(name: 'Branch', defaultValue: 'master', description: 'Git branch to run tests')
