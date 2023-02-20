@@ -31,6 +31,12 @@ pipeline {
             steps {
                 bat "./gradlew cucumber -Dtags=${params.Tags}"
             }
+
+            post {
+               always {
+                  cucumber(fileIncludePattern: 'cucumber-report.json', jsonReportDirectory: 'build')
+               }
+            }
         }
     }
 }
