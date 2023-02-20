@@ -2,6 +2,11 @@ gitUrl = 'https://github.com/upolnomocheniy/AQASendBox.git'
 artifactFile = 'cucumber-report.zip'
 
 pipeline {
+    options {
+        ansiColor('xterm')
+        timestamps()
+    }
+
     agent any
 
     parameters {
