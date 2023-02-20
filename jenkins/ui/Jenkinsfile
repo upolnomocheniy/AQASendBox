@@ -19,8 +19,8 @@ pipeline {
             steps {
 
                 script {
-                    jobDescription = "<b>Branch: </b> <i>${params.Branch}</i><br/>
-                                      <b>Tags: </b> <i>${params.Tags}</i><br/>"
+                    jobDescription = """<b>Branch: </b> <i>${params.Branch}</i><br/>
+                                      <b>Tags: </b> <i>${params.Tags}</i><br/>"""
                     addHtmlBadge id: '', html: jobDescription
                     currentBuild.description = jobDescription
                 }
