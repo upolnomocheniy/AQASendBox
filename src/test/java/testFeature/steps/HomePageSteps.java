@@ -3,21 +3,18 @@ package testFeature.steps;
 import com.codeborne.selenide.SelenideElement;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.com.TestFeature.HomePage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.com.test_feature.HomePage;
 
-import java.time.Duration;
 import java.util.List;
-import java.util.function.Function;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.title;
+import static java.time.Duration.ofSeconds;
 import static java.util.stream.Collectors.toList;
 import static org.com.utils.ui.WaitUntil.waitForCondition;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 @AllArgsConstructor
 @Getter
@@ -31,7 +28,7 @@ public class HomePageSteps {
     }
 
     public String checkHeaderOfTheBlog(String text) {
-        return homePage.getStatisticBlockHeader().shouldHave(text(text), Duration.ofSeconds(10)).getText();
+        return homePage.getStatisticBlockHeader().shouldHave(text(text), ofSeconds(10)).getText().toLowerCase();
     }
 
     public List<String> getElementOfTheMainSubMenu() {
@@ -41,6 +38,15 @@ public class HomePageSteps {
                 .collect(toList());
     }
 
+    public void clickToTheSubMenuButton() {
+        homePage.getMenuButton().click();
+    }
+
+    public void clickToTheChangeLanguageButton() {
+        homePage.getChangeLanguageButton().click();
+    }
+
+
     public List<String> getElementOfTheMainMenu() {
         return homePage.getMenu().stream()
                 .map(text -> text.shouldBe(visible).getText())
@@ -49,12 +55,11 @@ public class HomePageSteps {
     }
 
     public void clickToTheEnglishTranslateButton() {
-        waitForCondition(ExpectedConditions.visibilityOf(homePage.getTurnEnglishTranslateButton()), 30000, 100);
+        waitForCondition(visibilityOf(homePage.getTurnEnglishTranslateButton()), 30000, 100);
         homePage.getTurnEnglishTranslateButton().shouldBe(visible).click();
     }
 
     public String getPageTitle() {
         return title();
     }
-
 }

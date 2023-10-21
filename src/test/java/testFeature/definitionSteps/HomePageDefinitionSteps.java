@@ -22,31 +22,46 @@ public class HomePageDefinitionSteps {
         homePageSteps.openPage();
     }
 
-    @Then("^User can see header with (.*) text for statistic per day$")
+    @Then("^User can see header with '(.*)' text for statistic per day$")
     public void userCabSeeHeaderWithTextForStatisticsPerDat(String text) {
-        homePageSteps.checkHeaderOfTheBlog(text.toLowerCase());
+        assertThat(text)
+                .as("Text isn't equal and need to check")
+                .isEqualTo(homePageSteps.checkHeaderOfTheBlog(text.toLowerCase()));
     }
 
     @Then("^User check sub menu on the home page:$")
     public void userCheckSubMenuOnTheHomePage(List<String> subMenuElements) {
-        assertThat(subMenuElements).as("Sub Menu elements not the same and need to check")
+        assertThat(subMenuElements)
+                .as("Sub Menu elements not the same and need to check")
                 .containsExactlyInAnyOrderElementsOf(homePageSteps.getElementOfTheMainSubMenu());
+    }
+
+    @Then("^User click to the sub-menu button$")
+    public void userClickToTheSubMenuButton() {
+        homePageSteps.clickToTheSubMenuButton();
     }
 
     @Then("^User check menu on the home page:$")
     public void userCheckMenuOnTheHomePage(List<String> menuElements) {
-        assertThat(menuElements).as("Sub Menu elements not the same and need to check")
+        assertThat(menuElements)
+                .as("Sub Menu elements not the same and need to check")
                 .containsExactlyInAnyOrderElementsOf(homePageSteps.getElementOfTheMainMenu());
     }
 
+    @Then("^User click to the change language button$")
+    public void userClickToTheChangeLanguageButton() {
+        homePageSteps.clickToTheChangeLanguageButton();
+    }
+
     @Then("^User click En button for open English version$")
-    public void userClickENButtonForOpenEnglishVersion(){
+    public void userClickENButtonForOpenEnglishVersion() {
         homePageSteps.clickToTheEnglishTranslateButton();
     }
 
-    @Then("^User check title the page is: (.*)$")
+    @Then("^User check title the page is: '(.*)'$")
     public void userCheckTitleThePageIs(String titleName) {
-        assertThat(titleName).as("Title is not equal")
+        assertThat(titleName)
+                .as("Title is not equal")
                 .isEqualTo(homePageSteps.getPageTitle());
     }
 
