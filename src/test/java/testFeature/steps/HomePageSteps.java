@@ -13,6 +13,7 @@ import static com.codeborne.selenide.Browsers.CHROME;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Configuration.browser;
+import static com.codeborne.selenide.Configuration.browserSize;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.title;
 import static java.time.Duration.ofSeconds;
@@ -30,8 +31,8 @@ public class HomePageSteps {
 
     public void openPage() {
         browser = CHROME;
+        browserSize = "1920x1080";
         open(homeUrl);
-        getWebDriver().manage().window().maximize();
     }
 
     public String checkHeaderOfTheBlog(String text) {
