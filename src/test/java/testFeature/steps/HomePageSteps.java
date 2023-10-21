@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.com.test_feature.HomePage;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,7 +14,6 @@ import static com.codeborne.selenide.Browsers.CHROME;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Configuration.browser;
-import static com.codeborne.selenide.Configuration.browserSize;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.title;
 import static java.time.Duration.ofSeconds;
@@ -31,7 +31,9 @@ public class HomePageSteps {
 
     public void openPage() {
         browser = CHROME;
-        browserSize = "1920x1080";
+//        browserSize = "1920x1080";
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--start-maximized");
         open(homeUrl);
     }
 
