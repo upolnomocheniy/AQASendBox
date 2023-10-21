@@ -3,6 +3,10 @@ plugins {
     id 'com.github.spacialcircumstances.gradle-cucumber-reporting' version '0.1.25'
 }
 
+wrapper {
+    gradleVersion = '7.0'
+}
+
 group 'org.example'
 version '1.0-SNAPSHOT'
 
