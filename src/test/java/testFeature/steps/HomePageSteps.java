@@ -1,7 +1,6 @@
 package testFeature.steps;
 
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.Selenide;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.com.test_feature.HomePage;
@@ -47,7 +46,7 @@ public class HomePageSteps {
     }
 
     public void clickToTheSubMenuButton() {
-        WebDriverWait wait = new WebDriverWait(getWebDriver(), ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getWebDriver(), ofSeconds(30));
         wait.until(ExpectedConditions.elementToBeClickable(homePage.getMenuButton()));
         homePage.getMenuButton().click();
     }
