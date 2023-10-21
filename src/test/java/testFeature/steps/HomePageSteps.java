@@ -1,9 +1,12 @@
 package testFeature.steps;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.Selenide;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.com.test_feature.HomePage;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -44,6 +47,8 @@ public class HomePageSteps {
     }
 
     public void clickToTheSubMenuButton() {
+        WebDriverWait wait = new WebDriverWait(getWebDriver(), ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(homePage.getMenuButton()));
         homePage.getMenuButton().click();
     }
 
